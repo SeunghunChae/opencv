@@ -56,7 +56,7 @@ def process():
 
 
 
-        
+window=Tk()        
 window.title("seunghun chae")
 window.geometry("640x400+100+100")#너비*높이, 초기 x, y좌
 window.resizable(True, True)#상하, 좌우
