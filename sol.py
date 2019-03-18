@@ -44,16 +44,59 @@ def process():
             img[y:y+h, x:x+w] = face_img
         cv2.imwrite('output.jpg', img)
 
+    elif RadioVariaty.get()==3: #face detection - video"
+        capture = cv2.VideoCapture("input.mp4")
 
-    #elif RadioVariaty.get()==3:
+        while True:
+            if(capture.get(cv2.CAP_PROP_POS_FRAMES)==capture.get(cv2.CAP_PROP_FRAME_COUNT)):
+                capture.open("input.mp4")
+                
+            ret, frame = capture.read()
+            cv2.imshow("videoFrame", frame)
+        
+            if cv2.waitKey(33)>0: break
+        capture.release()
+        cv2.destroyAllWindows()
 
-    #elif RadioVariaty.get()==4:
+    elif RadioVariaty.get()==4: #human detection - video
+        capture = cv2.VideoCapture("input.mp4")
 
-    #elif RadioVariaty.get()==5:
+        while True:
+            if(capture.get(cv2.CAP_PROP_POS_FRAMES)==capture.get(cv2.CAP_PROP_FRAME_COUNT)):
+                capture.open("input.mp4")
+                
+            ret, frame = capture.read()
+            cv2.imshow("videoFrame", frame)
+        
+            if cv2.waitKey(33)>0: break
+        capture.release()
+        cv2.destroyAllWindows()
 
-    #elif RadioVariaty.get()==6:
-
-
+    elif RadioVariaty.get()==5: #face detection - webcam
+        capture = cv2.VideoCapture(0)
+        capture.set(cv2.CAP_PROP_FRAME_WIDTH, 720)
+        capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        
+        while True:
+            ret, frame = capture.read()
+            cv2.imshow("videoFrame", frame)
+            if cv2.waitKey(1)>0: break
+            #1ms마다 프레임을 재생, 키입력시 종료 argument는 정
+        capture.release()
+        cv2.destroyAllWindows()
+        
+    elif RadioVariaty.get()==6: #human detection - webcam
+        capture = cv2.VideoCapture(0)
+        capture.set(cv2.CAP_PROP_FRAME_WIDTH, 720)
+        capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        
+        while True:
+            ret, frame = capture.read()
+            cv2.imshow("videoFrame", frame)
+            if cv2.waitKey(1)>0: break
+            #1ms마다 프레임을 재생, 키입력시 종료 argument는 정
+        capture.release()
+        cv2.destroyAllWindows()
 
 
 window=Tk()        
@@ -71,15 +114,15 @@ label.pack()
 RadioVariaty=IntVar()
 radio1=Radiobutton(window, text="face detection - image", value=1, variable=RadioVariaty)
 radio1.pack()
-radio2=Radiobutton(window, text="person detection - image", value=2, variable=RadioVariaty)
+radio2=Radiobutton(window, text="human detection - image", value=2, variable=RadioVariaty)
 radio2.pack()
 radio3=Radiobutton(window, text="face detection - video", value=3, variable=RadioVariaty)
 radio3.pack()
-radio4=Radiobutton(window, text="person detection - video", value=4, variable=RadioVariaty)
+radio4=Radiobutton(window, text="human detection - video", value=4, variable=RadioVariaty)
 radio4.pack()
 radio5=Radiobutton(window, text="face detection - webcam", value=5, variable=RadioVariaty)
 radio5.pack()
-radio6=Radiobutton(window, text="person detection - webcam", value=6, variable=RadioVariaty)
+radio6=Radiobutton(window, text="human detection - webcam", value=6, variable=RadioVariaty)
 radio6.pack()
 
 button2 = Button(window, text="Convert", command=process)
