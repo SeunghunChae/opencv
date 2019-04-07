@@ -1,5 +1,5 @@
 from Tkinter import *
-import ttk #2,7버전은 ttk를 따로 import
+import ttk #브랜치 테스트
 
 window=Tk()
 window.title("YUN DAE HEE")
